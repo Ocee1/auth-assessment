@@ -1,7 +1,7 @@
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
 import { ValidationPipe } from '@nestjs/common';
-
+import { ConfigService } from '@nestjs/config';
 
 
 
@@ -15,6 +15,6 @@ async function bootstrap() {
   //   origin: 'https://auth-api-wn9m.onrender.com/',
   //   credentials: true,
   // })));
-  await app.listen('PORT');
+  await app.listen(10000);
 }
 bootstrap();
