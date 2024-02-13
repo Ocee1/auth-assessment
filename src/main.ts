@@ -15,6 +15,6 @@ async function bootstrap() {
   //   origin: 'https://auth-api-wn9m.onrender.com/',
   //   credentials: true,
   // })));
-  await app.listen(3000);
+  await app.listen('PORT');
 }
 bootstrap();
