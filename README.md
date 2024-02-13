@@ -1,30 +1,3 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="200" alt="Nest Logo" /></a>
-</p>
-
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
-
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://coveralls.io/github/nestjs/nest?branch=master" target="_blank"><img src="https://coveralls.io/repos/github/nestjs/nest/badge.svg?branch=master#9" alt="Coverage" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
-
-## Description
-
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
 
 ## Installation
 
@@ -45,28 +18,120 @@ $ yarn run start:dev
 $ yarn run start:prod
 ```
 
-## Test
 
-```bash
-# unit tests
-$ yarn run test
 
-# e2e tests
-$ yarn run test:e2e
+---
 
-# test coverage
-$ yarn run test:cov
-```
+# NestJS Project with Prisma and GraphQL
 
-## Support
+## Description
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+This project is a NestJS application that utilizes Prisma as the ORM and GraphQL for API endpoints. It provides mutations for user sign up and sign in functionality.
 
-## Stay in touch
+## Features
 
-- Author - [Kamil Myśliwiec](https://kamilmysliwiec.com)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+- User sign up mutation
+- User sign in mutation
+- Integration with Prisma for database operations
+- GraphQL API for user authentication
+
+## Installation
+
+1. Clone the repository:
+
+   ```bash
+   git clone https://github.com/Ocee1/auth-assessment
+   ```
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd <project-directory>
+   ```
+
+3. Install dependencies:
+
+   ```bash
+   npm install
+   ```
+
+4. Set up environment variables:
+   
+   - Create a `.env` file in the root directory of the project.
+   - Add environment variables such as database connection URL, JWT secret, etc.
+   
+   Example `.env` file:
+   ```plaintext
+   DATABASE_URL=your_database_connection_url
+   JWT_SECRET=your_jwt_secret
+   ```
+
+5. Run the migration to initialize the database schema:
+
+   ```bash
+   npx prisma migrate dev
+   ```
+
+6. Start the development server:
+
+   ```bash
+   npm run start:dev
+   ```
+
+## Usage
+
+### Sign Up Mutation
+
+- Endpoint: `/graphql`
+- Method: `POST`
+- Query:
+  ```graphql
+  mutation {
+    signin(SignInInput: {
+      email: "example@email.com",
+      username: "john-Doe",
+      password: "password123"
+    }) {
+      accessToken
+      refreshToken
+      user {
+        email
+        username
+      }
+    }
+  }
+  ```
+- Description: Creates a new user with the provided username, email, and password.
+
+### Sign In Mutation
+
+- Endpoint: `/graphql`
+- Method: `POST`
+- Query:
+  ```graphql
+  mutation {
+    signin(SignInInput: {
+      email: "example@email.com",
+      password: "password123"
+    }) {
+      accessToken
+      refreshToken
+      user {
+        username
+      }
+    }
+  }
+  ```
+- Description: Logs in a user with the provided email and password and returns an authentication token along with user information.
+
+
+## License
+
+This project is licensed under the [MIT License](LICENSE).
+
+---
+
+
 
 ## License
 
